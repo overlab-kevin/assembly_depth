@@ -1,0 +1,47 @@
+# configs/assembly_depth_config.yaml
+
+# This file contains all the configuration parameters for training and testing the Assembly Depth model.
+
+# -- DATASET PARAMETERS --
+DATASET:
+  # Path to the root directory of the dataset.
+  # This directory should contain 'train' and 'val' subfolders.
+  PATH: '/path/to/your/dataset'
+
+  # Number of parallel workers for data loading.
+  WORKERS: 4
+
+  # Number of training epochs.
+  EPOCHS: 100
+
+  # Number of samples to draw from the dataset per epoch.
+  # This is useful when the dataset is very large.
+  EPOCH_LENGTH: 200000
+
+  # Batch size for training and validation.
+  BATCH_SIZE: 8
+
+
+# -- MODEL PARAMETERS --
+MODEL:
+  # Input image dimensions (Height, Width).
+  # The original paper uses 224x384.
+  IMG_SIZE: [224, 384]
+
+  # The EfficientNet encoder to use. 'b0' is a good starting point.
+  # Example: "efficientnet-b0"
+  ENCODER_NAME: 'efficientnet-b0'
+
+  # Use monocular depth estimates as input instead of RGB images.
+  # This is the key contribution of the AssemblyDepth method.
+  USE_MONOCULAR_DEPTH: True
+
+  # Enable the auxiliary head for part classification.
+  # This corresponds to the dual problem of assembly recognition.
+  USE_ASSEMBLY_CLASSIFIER: True
+
+
+# -- TRAINING PARAMETERS --
+TRAINING:
+  # Learning rate for the Adam optimizer.
+  LEARNING_RATE: 0.0001
